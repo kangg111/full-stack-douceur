@@ -52,12 +52,16 @@ export default function SignIn() {
         <PolicyModal
           content={TERMS_CONTENT}
           onClose={() => setShowTerms(false)}
+          user={undefined as any}
+          initialAddresses={[] as any}
         />
       )}
       {showPrivacy && (
         <PolicyModal
           content={PRIVACY_CONTENT}
           onClose={() => setShowPrivacy(false)}
+          user={undefined as any}
+          initialAddresses={[] as any}
         />
       )}
 
