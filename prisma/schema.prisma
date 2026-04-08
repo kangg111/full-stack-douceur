@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  slug      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id               Int      @id @default(autoincrement())
+  name             String
+  slug             String   @unique
+  price            Float
+  tagline          String
+  preOrderDays     Int      @default(0)
+  descriptionFull  String   @db.Text
+  size             String
+  serves           String
+  alcoholIntensity String   @default("None")
+  umami            String
+  suggestedFor     String   @db.Text
+  servingTip       String   @db.Text
+  isAvailable      Boolean  @default(true)
+  isFeatured       Boolean  @default(false)
+  categoryId       Int
+  category         Category @relation(fields: [categoryId], references: [id])
+  createdAt        DateTime @default(now())
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  firstName String?
+  lastName  String?
+  createdAt DateTime @default(now())
+  otps      Otp[]    // ← User has many Otps
+  addresses Address[]
+}
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  code      String
+  email     String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  // ← Add these two lines:
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model Address {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  firstName   String
+  lastName    String
+  company     String?
+  address     String
+  apartment   String?
+  postcode    String
+  city        String
+  state       String
+  phone       String
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Location {
+  id           Int      @id @default(autoincrement())
+  type         String   // "Bakery Café", "Dessert Café", "Central Kitchen"
+  name         String   // "Douceur Patisserie @ The MET"
+  shortName    String   // "The MET"
+  address      String   @db.Text
+  phone        String
+  mapsUrl      String   @db.Text
+  image        String   // "/images/location-met.jpg"
+  orderLabel   String   // "Order for Takeaways"
+  orderHref    String   // "/collections"
+  isActive     Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  hours        LocationHour[]
+  features     LocationFeature[]
+  createdAt    DateTime @default(now())
+}
+
+model LocationHour {
+  id         Int      @id @default(autoincrement())
+  locationId Int
+  location   Location @relation(fields: [locationId], references: [id])
+  label      String   // "Takeaways & Dine-In"
+  time       String   // "Mon – Sun · 9am – 6pm"
+  sortOrder  Int      @default(0)
+}
+
+model LocationFeature {
+  id         Int      @id @default(autoincrement())
+  locationId Int
+  location   Location @relation(fields: [locationId], references: [id])
+  label      String   // "Dine-in", "No Delivery"
+  sortOrder  Int      @default(0)
+}
