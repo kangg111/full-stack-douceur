@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect } from "react";
-import type { PolicyContent, Props } from "../../types";
+import type { PolicyContent, PolicyProps } from "@/app/types";
 
 const BRAND = "#4f0d0d";
 
@@ -82,11 +82,11 @@ export const PRIVACY_CONTENT = {
   ],
 };
 
-export default function PolicyModal({ content, onClose }: Props) {
+export default function PolicyModal({ content, onClose }: PolicyProps) {
   // Close on Escape key
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose?.();
+      if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
@@ -124,7 +124,7 @@ export default function PolicyModal({ content, onClose }: Props) {
               Douceur Patisserie
             </p>
             <h2 className="text-xl font-semibold" style={{ color: BRAND }}>
-              {content?.title}
+              {content.title}
             </h2>
           </div>
           <button
@@ -151,7 +151,7 @@ export default function PolicyModal({ content, onClose }: Props) {
         {/* Scrollable content */}
         <div className="overflow-y-auto px-8 py-6 flex-1">
           <div className="space-y-6">
-            {content?.sections.map((section) => (
+            {content.sections.map((section) => (
               <div key={section.heading}>
                 <h3
                   className="text-sm font-semibold mb-2"

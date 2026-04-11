@@ -1,6 +1,6 @@
 // app/types/index.ts
 
-// app/account/AccountClient.tsx
+// ── Address ──
 export interface Address {
   id: number;
   firstName: string;
@@ -15,23 +15,24 @@ export interface Address {
   isDefault: boolean;
 }
 
-export interface Props {
+// ── Account ──
+export interface AccountProps {
   user: { firstName: string | null; lastName: string | null; email: string };
   initialAddresses: Address[];
 }
 
-// app/(auth)/PolicyModal.tsx
+// ── Policy Modal ──
 export interface PolicyContent {
   title: string;
   sections: { heading: string; body: string }[];
 }
 
-export interface Props {
-  content?: PolicyContent;
-  onClose?: () => void;
+export interface PolicyProps {
+  content: PolicyContent;
+  onClose: () => void;
 }
 
-// lib/cart-store.ts
+// ── Cart ──
 export interface CartItem {
   id: number;
   name: string;
@@ -51,12 +52,13 @@ export interface CartStore {
   totalPrice: () => number;
 }
 
-// lib/session.ts
+// ── Session ──
 export interface SessionData {
   userId?: number;
   email?: string;
 }
 
+// ── Location ──
 export interface Location {
   index: string;
   type: string;
@@ -74,12 +76,14 @@ export interface Location {
   flip: boolean;
 }
 
+// ── Category ──
 export interface Category {
   id: number;
   name: string;
   slug: string;
 }
 
+// ── Product ──
 export interface Product {
   id: number;
   name: string;

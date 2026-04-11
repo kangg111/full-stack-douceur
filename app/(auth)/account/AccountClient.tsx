@@ -8,7 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useFormValidation, VALIDATION } from "@/lib/use-form-validation";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import type { Address, Props } from "../../types";
+import type { Address, AccountProps } from "../../types";
 
 const MY_STATES = [
   "Johor",
@@ -298,7 +298,10 @@ const addressValidationRules = {
 
 type AddressFormType = typeof emptyAddress;
 
-export default function AccountClient({ user, initialAddresses }: Props) {
+export default function AccountClient({
+  user,
+  initialAddresses,
+}: AccountProps) {
   const [activeTab, setActiveTab] = useState<"orders" | "profile">("orders");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
