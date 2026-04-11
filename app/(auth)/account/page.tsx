@@ -22,8 +22,6 @@ export default async function AccountPage() {
         email: user?.email ?? "",
       }}
       initialAddresses={user?.addresses ?? []}
-      content={{} as PolicyContent}
-      onClose={() => {}}
     />
   );
 }

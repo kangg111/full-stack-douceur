@@ -27,8 +27,8 @@ export interface PolicyContent {
 }
 
 export interface Props {
-  content: PolicyContent;
-  onClose: () => void;
+  content?: PolicyContent;
+  onClose?: () => void;
 }
 
 // lib/cart-store.ts
