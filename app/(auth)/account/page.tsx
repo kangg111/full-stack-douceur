@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import AccountClient from "./AccountClient";
-import { PolicyContent } from "@/app/types";
 
 export default async function AccountPage() {
   const session = await getSession();

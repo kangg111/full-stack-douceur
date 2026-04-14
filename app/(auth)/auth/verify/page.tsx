@@ -101,8 +101,6 @@ function VerifyContent() {
         <PolicyModal
           content={PRIVACY_CONTENT}
           onClose={() => setShowPrivacy(false)}
-          user={undefined as any}
-          initialAddresses={[] as any}
         />
       )}
 

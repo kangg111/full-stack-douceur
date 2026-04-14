@@ -17,8 +17,8 @@ export interface Address {
 
 // ── Account ──
 export interface AccountProps {
-  user: { firstName: string | null; lastName: string | null; email: string };
-  initialAddresses: Address[];
+  user?: { firstName: string | null; lastName: string | null; email: string };
+  initialAddresses?: Address[];
 }
 
 // ── Policy Modal ──

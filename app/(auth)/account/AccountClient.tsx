@@ -309,14 +309,14 @@ export default function AccountClient({
 
   // Profile
   const [editOpen, setEditOpen] = useState(false);
-  const [firstName, setFirstName] = useState(user.firstName ?? "");
-  const [lastName, setLastName] = useState(user.lastName ?? "");
+  const [firstName, setFirstName] = useState(user?.firstName ?? "");
+  const [lastName, setLastName] = useState(user?.lastName ?? "");
   const [saving, setSaving] = useState(false);
-  const [displayFirst, setDisplayFirst] = useState(user.firstName ?? "");
-  const [displayLast, setDisplayLast] = useState(user.lastName ?? "");
+  const [displayFirst, setDisplayFirst] = useState(user?.firstName ?? "");
+  const [displayLast, setDisplayLast] = useState(user?.lastName ?? "");
 
   // Addresses
-  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
+  const [addresses, setAddresses] = useState<Address[]>(initialAddresses ?? []);
   const [addAddressOpen, setAddAddressOpen] = useState(false);
   const [addressForm, setAddressForm] = useState(emptyAddress);
   const [savingAddress, setSavingAddress] = useState(false);
@@ -566,7 +566,7 @@ export default function AccountClient({
             </div>
             <div className="border border-gray-100 rounded-xl px-4 py-3 mb-1 bg-gray-50 mt-4">
               <p className="text-xs text-gray-400 mb-1">Email</p>
-              <p className="text-sm text-gray-700">{user.email}</p>
+              <p className="text-sm text-gray-700">{user?.email}</p>
             </div>
             <p className="text-xs text-gray-400 mb-6 px-1">
               This email is used for sign-in and order updates.
@@ -760,7 +760,7 @@ export default function AccountClient({
                       </p>
                     )}
                     <p className="text-xs text-gray-400 truncate">
-                      {user.email}
+                      {user?.email}
                     </p>
                   </div>
                 </div>
@@ -942,7 +942,7 @@ export default function AccountClient({
                   <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">
                     Email
                   </p>
-                  <p className="font-medium text-gray-800">{user.email}</p>
+                  <p className="font-medium text-gray-800">{user?.email}</p>
                 </div>
               </div>
 
